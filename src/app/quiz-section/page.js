@@ -1,6 +1,7 @@
 'use client';
 import React, { useState } from 'react';
 import 'bootstrap/dist/css/bootstrap.min.css';
+import Image from 'next/image';
 
 const images = [
   "/horse.jpg",
@@ -9,7 +10,6 @@ const images = [
   "/horse.jpg",
   "/horse.jpg",
   "/horse.jpg"
-
 ];
 
 const Page = () => {
@@ -42,7 +42,13 @@ const Page = () => {
                 <div className='col-md-4' key={index}>
                   <div className='card mb-4 shadow-sm' onClick={() => handleShowModal(image)}>
                     <div className='card-body text-center'>
-                      <img src={image} alt={`Card ${index + 1}`} className='w-100' />
+                      <Image
+                        src={image}
+                        alt={`Card ${index + 1}`}
+                        width={300} // Adjust as needed
+                        height={200} // Adjust as needed
+                        className='w-100'
+                      />
                     </div>
                   </div>
                 </div>
