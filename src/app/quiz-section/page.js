@@ -1,9 +1,6 @@
-'use client'; 
+'use client';
 import React, { useState } from 'react';
 import 'bootstrap/dist/css/bootstrap.min.css';
-import Button from 'react-bootstrap/Button';
-import Modal from 'react-bootstrap/Modal';
-import Form from 'react-bootstrap/Form';
 
 const images = [
   "https://th.bing.com/th/id/OIP.HNYFQfFAAtwzqLkItA3fRgHaEA?w=290&h=180&c=7&r=0&o=5&dpr=1.1&pid=1.7",
@@ -17,13 +14,21 @@ const images = [
 const Page = () => {
   const [showModal, setShowModal] = useState(false);
   const [selectedImage, setSelectedImage] = useState(null);
+  const [selectedOption, setSelectedOption] = useState('');
 
   const handleShowModal = (image) => {
     setSelectedImage(image);
     setShowModal(true);
   };
 
-  const handleCloseModal = () => setShowModal(false);
+  const handleCloseModal = () => {
+    setShowModal(false);
+    setSelectedOption(''); // Reset the selected option when closing
+  };
+
+  const handleOptionChange = (event) => {
+    setSelectedOption(event.target.value);
+  };
 
   return (
     <section className='Quiz-sectionWrapper py-5 p-5'>
@@ -52,9 +57,9 @@ const Page = () => {
                   <h5 className='card-title'>Point</h5>
                 </div>
               </div>
-              <Button variant="warning" className='mt-2'>0</Button>{' '}
-              <Button variant="success" className='mt-2'>Finish</Button>{' '}
-              <Button variant="danger" className='mt-2'>How to Play?</Button>{' '}
+              <button className='btn btn-warning mt-2'>0</button>
+              <button className='btn btn-success mt-2'>Finish</button>
+              <button className='btn btn-danger mt-2'>How to Play?</button>
               <p>Follow the instructions to win!</p>
             </div>
           </div>
@@ -62,44 +67,48 @@ const Page = () => {
       </div>
 
       {/* Modal for Question and Answers */}
-      <Modal show={showModal} onHide={handleCloseModal} centered>
-        <Modal.Header closeButton style={{backgroundColor:'orange',color:'white'}}>
-          <Modal.Title>Question !</Modal.Title>
-        </Modal.Header>
-        <Modal.Body>
-          <p>This is a sample question for the selected image.</p>
-          <Form>
-            <Form.Check 
-              type="radio"
-              label="Option 1"
-              name="answerOptions"
-              id="option1"
-            />
-            <Form.Check 
-              type="radio"
-              label="Option 2"
-              name="answerOptions"
-              id="option2"
-            />
-            <Form.Check 
-              type="radio"
-              label="Option 3"
-              name="answerOptions"
-              id="option3"
-            />
-            <Form.Check 
-              type="radio"
-              label="Option 4"
-              name="answerOptions"
-              id="option4"
-            />
-          </Form>
-        </Modal.Body>
-        <Modal.Footer>
-        
-          <Button variant="primary" onClick={() => alert("Answer Submitted!")} className='santacolor mt-2'>Submit Answer</Button>
-        </Modal.Footer>
-      </Modal>
+      {showModal && (
+        <div className="modal show" style={{ display: 'block' }} onClick={handleCloseModal}>
+          <div className="modal-dialog modal-dialog-centered" onClick={(e) => e.stopPropagation()}>
+            <div className="modal-content">
+              <div className="modal-header justify-content-between" style={{ backgroundColor: 'orange', color: 'white' }}>
+                <h5 className="modal-title">Question !</h5>
+                <button type="button" className="close" onClick={handleCloseModal} style={{border:'none', backgroundColor:'#FFA500'}}>
+                  <span>&times;</span>
+                </button>
+              </div>
+              <div className="modal-body">
+                <p>This is a sample question for the selected image.</p>
+                <form>
+                  {['option1', 'option2', 'option3', 'option4'].map((option, index) => (
+                    <div className="form-check" key={index}>
+                      <input
+                        type="radio"
+                        className="form-check-input"
+                        name="answerOptions"
+                        id={option}
+                        value={option}
+                        checked={selectedOption === option}
+                        onChange={handleOptionChange}
+                      />
+                      <label className="form-check-label" htmlFor={option}>Option {index + 1}</label>
+                    </div>
+                  ))}
+                </form>
+              </div>
+              <div className="modal-footer">
+                <button className='btn btn-primary' onClick={() => {
+                  alert(`Answer Submitted: ${selectedOption}`);
+                  handleCloseModal(); // Close modal after submission
+                }}>
+                  Submit Answer
+                </button>
+              </div>
+            </div>
+          </div>
+        </div>
+      )}
+      {showModal && <div className="modal-backdrop fade show"></div>}
     </section>
   );
 };
