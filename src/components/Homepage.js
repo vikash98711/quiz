@@ -52,7 +52,7 @@ const Homepage = () => {
               <img
                 className='img-fluid'
                 width='152px'
-                src='https://icons.veryicon.com/png/Holiday/Christmas%20Graphics/santa%20hat.png'
+                src='/santahat.png'
                 alt="Santa's Hat"
               />
             </div>
