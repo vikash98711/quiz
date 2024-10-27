@@ -302,11 +302,11 @@ const Page = () => {
   const progressPercentage = ((questionsAnswered) / questionsData.length) * 100;
 
   return (
-    <section className='Quiz-sectionWrapper py-5 p-5'>
+    <section className='Quiz-sectionWrapper py-5 '>
       {showModal && (
       <div className={`modal show santa-bg-theme fade-in`} style={{ display: 'block' }}>
       <div
-        className="modal-dialog modal-xl p-5"
+        className="modal-dialog modal-xl"
         onClick={(e) => e.stopPropagation()}
       >
         <h1 className='text-white' style={{textShadow:'2px 2px #f7d94f'}}>Special Quiz Problem</h1>
