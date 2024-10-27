@@ -93,7 +93,7 @@ const Homepage = () => {
                     required
                   />
                   <small className="form-text text-muted">
-                    We'll never share your email with anyone else.
+                    We ll never share your email with anyone else.
                   </small>
                 </div>
                 <button type="submit" className='btn btn-primary santacolor mt-2'>
