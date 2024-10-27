@@ -11,7 +11,7 @@ const Homepage = () => {
   const handleShow = () => setShowModal(true);
 
   const handleEmailChange = (e) => {
-    console.log("Email input value:", e.target.value);  // Log the value for debugging
+    console.log("Email input value:", e.target.value)
     setEmail(e.target.value);
   };
   
@@ -93,7 +93,7 @@ const Homepage = () => {
                     required
                   />
                   <small className="form-text text-muted">
-                    We ll never share your email with anyone else.
+                    We ll never share your email with anyone else
                   </small>
                 </div>
                 <button type="submit" className='btn btn-primary santacolor mt-2'>
