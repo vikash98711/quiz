@@ -2,25 +2,28 @@
 
 import { url } from '@/utils/url';
 import React, { useState } from 'react';
-import Swal from 'sweetalert2';
-import { useRouter } from 'next/navigation'; // For Next.js 13 and later
+import { useRouter } from 'next/navigation';
+import 'bootstrap/dist/css/bootstrap.min.css';
+import 'font-awesome/css/font-awesome.min.css'; // Import Font Awesome CSS
 
 const Homepage = () => {
   const [showModal, setShowModal] = useState(false);
   const [email, setEmail] = useState('');
-  const router = useRouter(); // Initialize the router
+  const [errorMessage, setErrorMessage] = useState('');
+  const [isLoading, setIsLoading] = useState(false); // Loading state for spinner
+  const router = useRouter();
 
   const handleClose = () => setShowModal(false);
   const handleShow = () => setShowModal(true);
 
   const handleEmailChange = (e) => {
-    console.log("Email input value:", e.target.value);
     setEmail(e.target.value);
+    setErrorMessage(''); // Clear error message on new input
   };
 
   const handleSubmit = async (e) => {
     e.preventDefault();
-    console.log("API hitting");
+    setIsLoading(true); // Start loading spinner
 
     try {
       const response = await fetch(`${url}/api/user`, {
@@ -32,36 +35,21 @@ const Homepage = () => {
       });
 
       const responseData = await response.json();
-      console.log(responseData.message, "responseData.message");
 
       if (!response.ok) {
-        await Swal.fire({
-          icon: 'error',
-          title: 'Oops!',
-          text: responseData.message,
-        });
+        setErrorMessage(responseData.message || 'An error occurred. Please try again.');
+        setIsLoading(false);
         return;
       }
 
-      await Swal.fire({
-        icon: 'success',
-        title: 'Success!',
-        text: 'User registered successfully.',
-      });
-
       setEmail('');
       handleClose();
-
-      // Navigate to another page after successful submission
-      router.push('/quiz-section'); // Change to your target route
+      router.push('/quiz-section'); // Navigate to the next page
 
     } catch (error) {
-      console.error('Error during registration:', error);
-      await Swal.fire({
-        icon: 'error',
-        title: 'Error!',
-        text: 'An unexpected error occurred. Please try again.',
-      });
+      setErrorMessage('An unexpected error occurred. Please try again.');
+    } finally {
+      setIsLoading(false); // Stop loading spinner
     }
   };
 
@@ -69,18 +57,18 @@ const Homepage = () => {
     <>
       <div className='home-banner-santa p-5'>
         <div className='PlayButton-wrapper'>
-          <h2 className='text-white'>SANTAS</h2>
-          <h1 className='text-white fs-70'>SCRABBLE WORDS</h1>
-          <p className='text-white'>Even The Santa Needs A Good Policy!</p>
+        <h2 className='text-white fade-in' style={{textShadow:'2px 2px rgb(247 98 79)'}}>SANTAS</h2>
+  <h1 className='text-white fs-70 slide-up'style={{textShadow:'2px 2px rgb(247 98 79)'}}>SCRABBLE WORDS</h1>
+  <p className='text-white fade-in'style={{textShadow:'2px 2px rgb(247 98 79)'}}>Even The Santa Needs A Good Policy!</p>
           <div style={{ position: 'relative' }} className='mt-5'>
             <div>
               <div className="button play-game">
-                <a href="#" onClick={handleShow}>Play Now</a>
+                <a className='zoom' href="#" onClick={handleShow} style={{textShadow:'2px 2px rgb(247 98 79)'}}>Play Now <i className="fa fa-play"></i></a>
               </div>
             </div>
             <div className='santa-cap'>
               <img
-                className='img-fluid'
+                className='img-fluid bounce'
                 width='152px'
                 src='https://icons.veryicon.com/png/Holiday/Christmas%20Graphics/santa%20hat.png'
                 alt="Santa's Hat"
@@ -91,18 +79,20 @@ const Homepage = () => {
 
         {/* Modal */}
         <div className={`modal ${showModal ? 'show' : ''}`} style={{ display: showModal ? 'block' : 'none' }}>
-          <div className="modal-dialog modal-dialog-centered">
-            <div className="modal-content">
-              <div className="modal-header justify-content-between">
-                <h5 className="modal-title santawcolor">Register yourself on Santas List</h5>
-                <button type="button" className="close" onClick={handleClose} style={{ border: 'none', backgroundColor: 'white' }}>
+          <div className="modal-dialog modal-dialog-centered p-3">
+            <div className="modal-content p-4" style={{boxShadow:'35px 40px #9d2931'}} >
+              <div className="modal-header justify-content-between" >
+                <h5 className="modal-title santawcolor">Register yourself on Santas List </h5>
+                {/* <button type="button" className="close" onClick={handleClose} style={{ border: 'none', backgroundColor: 'white' }}>
                   <span>&times;</span>
-                </button>
+                </button> */}
+                <i className="fa fa-times-circle" onClick={handleClose}></i>
+
               </div>
               <div className="modal-body">
                 <form onSubmit={handleSubmit}>
                   <div className="form-group">
-                    <label htmlFor="formBasicEmail">Enter Work Email Id</label>
+                    <label htmlFor="formBasicEmail">Enter Work Email Id </label>
                     <input
                       type="email"
                       className="form-control"
@@ -112,12 +102,22 @@ const Homepage = () => {
                       onChange={handleEmailChange}
                       required
                     />
-                    <small className="form-text text-muted">
-                      We ll never share your email with anyone else
-                    </small>
+                    {/* <small className="form-text text-muted">
+                      We'll never share your email with anyone else.
+                    </small> */}
+                    {errorMessage && (
+                      <div className="text-danger mt-3">
+                        {errorMessage}
+                      </div>
+                    )}
                   </div>
-                  <button type="submit" className='btn btn-primary santacolor mt-2'>
-                    Start Game
+                  <button type="submit" className='btn btn-primary santacolor mt-3' disabled={isLoading}>
+                    {isLoading ? (
+                      <span className="spinner-border spinner-border-sm" role="status" aria-hidden="true"></span>
+                    ) : (
+                      'Start Game'
+                    )}
+                    
                   </button>
                 </form>
               </div>
@@ -125,7 +125,6 @@ const Homepage = () => {
           </div>
         </div>
       </div>
-      {/* {showModal && <div className="modal-backdrop fade show"></div>} */}
     </>
   );
 };
