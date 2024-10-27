@@ -74,7 +74,7 @@ const Homepage = () => {
         <div className="modal-dialog modal-dialog-centered">
           <div className="modal-content">
             <div className="modal-header justify-content-between">
-              <h5 className="modal-title santawcolor">Register yourself on Santa's List!</h5>
+              <h5 className="modal-title santawcolor">Register yourself on Santas List!</h5>
               <button type="button" className="close" onClick={handleClose} style={{border:'none',backgroundColor:'white'}}>
                 <span>&times;</span>
               </button>
