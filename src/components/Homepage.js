@@ -2,7 +2,6 @@
 
 import { url } from '@/utils/url';
 import React, { useState } from 'react';
-import Image from 'next/image';
 
 const Homepage = () => {
   const [showModal, setShowModal] = useState(false);
@@ -50,7 +49,7 @@ const Homepage = () => {
     <>
       <div className='home-banner-santa p-5'>
       <div className='PlayButton-wrapper'>
-        <h2 className='text-white'>SANTA'S</h2>
+        <h2 className='text-white'>SANTAS</h2>
         <h1 className='text-white fs-70'>SCRABBLE WORDS</h1>
         <p className='text-white'>Even The Santa Needs A Good Policy!</p>
         <div style={{ position: 'relative' }} className='mt-5'>
@@ -60,7 +59,7 @@ const Homepage = () => {
             </div>
           </div>
           <div className='santa-cap'>
-            <Image
+            <img
               className='img-fluid'
               width='152px'
               src='https://icons.veryicon.com/png/Holiday/Christmas%20Graphics/santa%20hat.png'

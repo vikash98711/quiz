@@ -1,123 +1,109 @@
 'use client';
-import React, { useState } from 'react';
+
+import { url } from '@/utils/url';
+import React, { useEffect, useState } from 'react';
 import 'bootstrap/dist/css/bootstrap.min.css';
-import Image from 'next/image';
 
-const images = [
-  "/horse.jpg",
-  "/horse.jpg",
-  "/horse.jpg",
-  "/horse.jpg",
-  "/horse.jpg",
-  "/horse.jpg"
-];
-
-const Page = () => {
+const Homepage = () => {
   const [showModal, setShowModal] = useState(false);
-  const [selectedImage, setSelectedImage] = useState(null);
-  const [selectedOption, setSelectedOption] = useState('');
+  const [email, setEmail] = useState('');
+  const [isMounted, setIsMounted] = useState(false);
 
-  const handleShowModal = (image) => {
-    setSelectedImage(image);
-    setShowModal(true);
+  useEffect(() => {
+    // Ensures that the code only runs on the client
+    setIsMounted(true);
+  }, []);
+
+  const handleClose = () => setShowModal(false);
+  const handleShow = () => setShowModal(true);
+
+  const handleEmailChange = (e) => {
+    console.log("Email input value:", e.target.value);
+    setEmail(e.target.value);
   };
 
-  const handleCloseModal = () => {
-    setShowModal(false);
-    setSelectedOption(''); // Reset the selected option when closing
+  const handleSubmit = async (e) => {
+    e.preventDefault();
+
+    try {
+      const response = await fetch(`${url}/api/user`, {
+        method: 'POST',
+        headers: {
+          'Content-Type': 'application/json',
+        },
+        body: JSON.stringify({ email }),
+      });
+      // Additional handling here if needed
+    } catch (error) {
+      console.error('Error during registration:', error);
+    }
   };
 
-  const handleOptionChange = (event) => {
-    setSelectedOption(event.target.value);
-  };
+  // Render only if mounted to avoid hydration issues
+  if (!isMounted) return null;
 
   return (
-    <section className='Quiz-sectionWrapper py-5 p-5'>
-      <div className='container'>
-        <div className='row justify-content-center'>
-          {/* Main Content Area */}
-          <div className='col-lg-8'>
-            <div className='row justify-content-center'>
-              {images.map((image, index) => (
-                <div className='col-md-4' key={index}>
-                  <div className='card mb-4 shadow-sm' onClick={() => handleShowModal(image)}>
-                    <div className='card-body text-center'>
-                      <Image
-                        src={image}
-                        alt={`Card ${index + 1}`}
-                        width={300} // Adjust as needed
-                        height={200} // Adjust as needed
-                        className='w-100'
-                      />
-                    </div>
-                  </div>
-                </div>
-              ))}
+    <>
+      <div className='home-banner-santa p-5'>
+        <div className='PlayButton-wrapper'>
+          <h2 className='text-white'>SANTAS</h2>
+          <h1 className='text-white fs-70'>SCRABBLE WORDS</h1>
+          <p className='text-white'>Even The Santa Needs A Good Policy!</p>
+          <div style={{ position: 'relative' }} className='mt-5'>
+            <div>
+              <div className="button play-game">
+                <a href="#" onClick={handleShow}>Play Now</a>
+              </div>
+            </div>
+            <div className='santa-cap'>
+              <img
+                className='img-fluid'
+                width='152px'
+                src='https://icons.veryicon.com/png/Holiday/Christmas%20Graphics/santa%20hat.png'
+                alt="Santa's Hat"
+              />
             </div>
           </div>
+        </div>
 
-          {/* Right Sidebar */}
-          <div className='col-lg-4 mt-5 d-flex align-items-center justify-content-center'>
-            <div className='card shadow-sm p-3 sticky-sidebar text-center'>
-              <div className='card mb-4 shadow-sm'>
-                <div className='card-body text-center'>
-                  <h5 className='card-title'>Point</h5>
-                </div>
+        {/* Modal */}
+        <div className={`modal ${showModal ? 'show' : ''}`} style={{ display: showModal ? 'block' : 'none' }}>
+          <div className="modal-dialog modal-dialog-centered">
+            <div className="modal-content">
+              <div className="modal-header justify-content-between">
+                <h5 className="modal-title santawcolor">Register yourself on Santas List!</h5>
+                <button type="button" className="close" onClick={handleClose} style={{ border: 'none', backgroundColor: 'white' }}>
+                  <span></span>
+                </button>
               </div>
-              <button className='btn btn-warning mt-2'>0</button>
-              <button className='btn btn-success mt-2'>Finish</button>
-              <button className='btn btn-danger mt-2'>How to Play?</button>
-              <p>Follow the instructions to win!</p>
+              <div className="modal-body">
+                <form onSubmit={handleSubmit}>
+                  <div className="form-group">
+                    <label htmlFor="formBasicEmail">Enter Work Email Id</label>
+                    <input
+                      type="email"
+                      className="form-control"
+                      id="formBasicEmail"
+                      placeholder="Enter your email"
+                      value={email}
+                      onChange={handleEmailChange}
+                      required
+                    />
+                    <small className="form-text text-muted">
+                      Well never share your email with anyone else.
+                    </small>
+                  </div>
+                  <button type="submit" className='btn btn-primary santacolor mt-2'>
+                    Start Game
+                  </button>
+                </form>
+              </div>
             </div>
           </div>
         </div>
       </div>
-
-      {/* Modal for Question and Answers */}
-      {showModal && (
-        <div className="modal show" style={{ display: 'block' }} onClick={handleCloseModal}>
-          <div className="modal-dialog modal-dialog-centered" onClick={(e) => e.stopPropagation()}>
-            <div className="modal-content">
-              <div className="modal-header justify-content-between" style={{ backgroundColor: 'orange', color: 'white' }}>
-                <h5 className="modal-title">Question !</h5>
-                <button type="button" className="close" onClick={handleCloseModal} style={{border:'none', backgroundColor:'#FFA500'}}>
-                  <span>&times;</span>
-                </button>
-              </div>
-              <div className="modal-body">
-                <p>This is a sample question for the selected image.</p>
-                <form>
-                  {['option1', 'option2', 'option3', 'option4'].map((option, index) => (
-                    <div className="form-check" key={index}>
-                      <input
-                        type="radio"
-                        className="form-check-input"
-                        name="answerOptions"
-                        id={option}
-                        value={option}
-                        checked={selectedOption === option}
-                        onChange={handleOptionChange}
-                      />
-                      <label className="form-check-label" htmlFor={option}>Option {index + 1}</label>
-                    </div>
-                  ))}
-                </form>
-              </div>
-              <div className="modal-footer">
-                <button className='btn btn-primary' onClick={() => {
-                  alert(`Answer Submitted: ${selectedOption}`);
-                  handleCloseModal(); // Close modal after submission
-                }}>
-                  Submit Answer
-                </button>
-              </div>
-            </div>
-          </div>
-        </div>
-      )}
-      {showModal && <div className="modal-backdrop fade show"></div>}
-    </section>
+    </>
   );
 };
 
-export default Page;
+export default Homepage;

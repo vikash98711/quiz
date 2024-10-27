@@ -12,3 +12,5 @@ const  questionmodel = ({
     },
     answer: Array
 })
+
+export const Question = mongoose.models.question || mongoose.model("question", questionmodel)
