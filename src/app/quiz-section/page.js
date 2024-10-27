@@ -310,7 +310,7 @@ const Page = () => {
         onClick={(e) => e.stopPropagation()}
       >
         <h1 className='text-white' style={{textShadow:'2px 2px #f7d94f'}}>Special Quiz Problem</h1>
-        <div className="modal-content p-5" style={{ border: '4px solid rgb(153 219 142', boxShadow: '35px 40px rgb(68 58 65)' }}>
+        <div className="modal-content quiz-mod-size" style={{ border: '4px solid rgb(153 219 142', boxShadow: '35px 40px rgb(68 58 65)' }}>
           <div className="modal-header justify-content-between" style={{ backgroundColor: 'rgb(61 94 181)', color: 'white' }}>
             <h5 className="modal-title"><i className="fa fa-question-circle ml-2"></i> Question ({currentQuestionIndex + 1})</h5>
             {/* Uncomment this button to enable closing the modal */}

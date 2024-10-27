@@ -223,6 +223,9 @@ rotate: 33deg;
   border-radius: 5px;
 }
 
+.quiz-mod-size {
+  padding: 5rem;
+}
 @media (min-width :200px) and (max-width:468px) {
   .animated-button1 {
     padding: 11px 22px;
@@ -241,4 +244,8 @@ rotate: 33deg;
   padding: 9px 20px;
 
 }
+.quiz-mod-size {
+  padding: 1rem !important;
 }
+}
+
