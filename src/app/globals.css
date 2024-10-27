@@ -226,6 +226,9 @@ rotate: 33deg;
 .quiz-mod-size {
   padding: 5rem;
 }
+.play-now-page-space {
+  padding: 1.5rem;
+}
 @media (min-width :200px) and (max-width:468px) {
   .animated-button1 {
     padding: 11px 22px;
@@ -245,6 +248,9 @@ rotate: 33deg;
 
 }
 .quiz-mod-size {
+  padding: 1rem !important;
+}
+.play-now-page-space {
   padding: 1rem !important;
 }
 }
