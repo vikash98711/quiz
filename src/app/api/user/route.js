@@ -16,19 +16,47 @@ export async function GET(req){
     }
 }
 
-export async function POST(req){
+// export async function POST(req){
     
-    const payload = await req.json() 
-    console.log(payload,"payload");
+//     const payload = await req.json() 
+//     console.log(payload,"payload");
     
-    try {
-        await mongoose.connect(connectionStr) 
-        const newUser = new User(payload)
-        await newUser.save() 
-        return NextResponse.json({message: "Post success"}, {status: 200}) 
-    } catch (error) {
-        // console.log(error);
+//     try {
+//         await mongoose.connect(connectionStr) 
+//         const Alreadyexists = User.findOne({email:payload.email})
+//         if(!Alreadyexists){
+//             const newUser = new User(payload)
+//             await newUser.save() 
+//             return NextResponse.json({message: "Post success"}, {status: 200})    
+//         }
+//         else {
+//             return NextResponse.json({message: "user already exists"}, {status: 409})    
+
+//         }
         
-        return NextResponse.json({message: error.message}, {status: 500}) 
+//     } catch (error) {
+        
+        
+//         return NextResponse.json({message: error.message}, {status: 500}) 
+//     }
+// }
+export async function POST(req) {
+    const payload = await req.json();
+    console.log(payload, "payload");
+
+    try {
+        await mongoose.connect(connectionStr);
+
+        // Ensure to await the findOne call
+        const alreadyExists = await User.findOne({ email: payload.email });
+        if (!alreadyExists) {
+            const newUser = new User(payload);
+            await newUser.save();
+            return NextResponse.json({ message: "User registered successfully" }, { status: 200 });
+        } else {
+            return NextResponse.json({ message: "This user already exists." }, { status: 409 });
+        }
+    } catch (error) {
+        return NextResponse.json({ message: error.message }, { status: 500 });
     }
 }

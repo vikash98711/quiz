@@ -1,109 +1,107 @@
 'use client';
 
-import { url } from '@/utils/url';
-import React, { useEffect, useState } from 'react';
+import React, { useState } from 'react';
 import 'bootstrap/dist/css/bootstrap.min.css';
 
-const Homepage = () => {
+const images = [
+  "https://th.bing.com/th/id/OIP.HNYFQfFAAtwzqLkItA3fRgHaEA?w=290&h=180&c=7&r=0&o=5&dpr=1.1&pid=1.7",
+  "https://th.bing.com/th/id/OIP.HNYFQfFAAtwzqLkItA3fRgHaEA?w=290&h=180&c=7&r=0&o=5&dpr=1.1&pid=1.7",
+  "https://th.bing.com/th/id/OIP.HNYFQfFAAtwzqLkItA3fRgHaEA?w=290&h=180&c=7&r=0&o=5&dpr=1.1&pid=1.7",
+  "https://th.bing.com/th/id/OIP.HNYFQfFAAtwzqLkItA3fRgHaEA?w=290&h=180&c=7&r=0&o=5&dpr=1.1&pid=1.7",
+  "https://th.bing.com/th/id/OIP.HNYFQfFAAtwzqLkItA3fRgHaEA?w=290&h=180&c=7&r=0&o=5&dpr=1.1&pid=1.7",
+  "https://th.bing.com/th/id/OIP.HNYFQfFAAtwzqLkItA3fRgHaEA?w=290&h=180&c=7&r=0&o=5&dpr=1.1&pid=1.7",
+];
+
+const Page = () => {
   const [showModal, setShowModal] = useState(false);
-  const [email, setEmail] = useState('');
-  const [isMounted, setIsMounted] = useState(false);
+  const [selectedImage, setSelectedImage] = useState(null);
 
-  useEffect(() => {
-    // Ensures that the code only runs on the client
-    setIsMounted(true);
-  }, []);
-
-  const handleClose = () => setShowModal(false);
-  const handleShow = () => setShowModal(true);
-
-  const handleEmailChange = (e) => {
-    console.log("Email input value:", e.target.value);
-    setEmail(e.target.value);
+  const handleShowModal = (image) => {
+    setSelectedImage(image);
+    setShowModal(true);
   };
 
-  const handleSubmit = async (e) => {
-    e.preventDefault();
-
-    try {
-      const response = await fetch(`${url}/api/user`, {
-        method: 'POST',
-        headers: {
-          'Content-Type': 'application/json',
-        },
-        body: JSON.stringify({ email }),
-      });
-      // Additional handling here if needed
-    } catch (error) {
-      console.error('Error during registration:', error);
-    }
-  };
-
-  // Render only if mounted to avoid hydration issues
-  if (!isMounted) return null;
+  const handleCloseModal = () => setShowModal(false);
 
   return (
-    <>
-      <div className='home-banner-santa p-5'>
-        <div className='PlayButton-wrapper'>
-          <h2 className='text-white'>SANTAS</h2>
-          <h1 className='text-white fs-70'>SCRABBLE WORDS</h1>
-          <p className='text-white'>Even The Santa Needs A Good Policy!</p>
-          <div style={{ position: 'relative' }} className='mt-5'>
-            <div>
-              <div className="button play-game">
-                <a href="#" onClick={handleShow}>Play Now</a>
-              </div>
-            </div>
-            <div className='santa-cap'>
-              <img
-                className='img-fluid'
-                width='152px'
-                src='https://icons.veryicon.com/png/Holiday/Christmas%20Graphics/santa%20hat.png'
-                alt="Santa's Hat"
-              />
+    <section className='Quiz-sectionWrapper py-5 p-5'>
+      <div className='container'>
+        <div className='row justify-content-center'>
+          {/* Main Content Area */}
+          <div className='col-lg-8'>
+            <div className='row justify-content-center'>
+              {images.map((image, index) => (
+                <div className='col-md-4' key={index}>
+                  <div className='card mb-4 shadow-sm' onClick={() => handleShowModal(image)}>
+                    <div className='card-body text-center'>
+                      <img src={image} alt={`Card ${index + 1}`} className='w-100' />
+                    </div>
+                  </div>
+                </div>
+              ))}
             </div>
           </div>
-        </div>
 
-        {/* Modal */}
-        <div className={`modal ${showModal ? 'show' : ''}`} style={{ display: showModal ? 'block' : 'none' }}>
-          <div className="modal-dialog modal-dialog-centered">
-            <div className="modal-content">
-              <div className="modal-header justify-content-between">
-                <h5 className="modal-title santawcolor">Register yourself on Santas List!</h5>
-                <button type="button" className="close" onClick={handleClose} style={{ border: 'none', backgroundColor: 'white' }}>
-                  <span></span>
-                </button>
+          {/* Right Sidebar */}
+          <div className='col-lg-4 mt-5 d-flex align-items-center justify-content-center'>
+            <div className='card shadow-sm p-3 sticky-sidebar text-center'>
+              <div className='card mb-4 shadow-sm'>
+                <div className='card-body text-center'>
+                  <h5 className='card-title'>Point</h5>
+                </div>
               </div>
-              <div className="modal-body">
-                <form onSubmit={handleSubmit}>
-                  <div className="form-group">
-                    <label htmlFor="formBasicEmail">Enter Work Email Id</label>
-                    <input
-                      type="email"
-                      className="form-control"
-                      id="formBasicEmail"
-                      placeholder="Enter your email"
-                      value={email}
-                      onChange={handleEmailChange}
-                      required
-                    />
-                    <small className="form-text text-muted">
-                      Well never share your email with anyone else.
-                    </small>
-                  </div>
-                  <button type="submit" className='btn btn-primary santacolor mt-2'>
-                    Start Game
-                  </button>
-                </form>
-              </div>
+              <button className='btn btn-warning mt-2'>0</button>
+              <button className='btn btn-success mt-2'>Finish</button>
+              <button className='btn btn-danger mt-2'>How to Play?</button>
+              <p>Follow the instructions to win!</p>
             </div>
           </div>
         </div>
       </div>
-    </>
+
+      {/* Modal for Question and Answers */}
+      {showModal && (
+        <div className="modal show" style={{ display: 'block' }} onClick={handleCloseModal}>
+          <div className="modal-dialog" onClick={(e) => e.stopPropagation()}>
+            <div className="modal-content">
+              <div className="modal-header" style={{ backgroundColor: 'orange', color: 'white' }}>
+                <h5 className="modal-title">Question!</h5>
+                <button type="button" className="close" onClick={handleCloseModal}>
+                  <span>&times;</span>
+                </button>
+              </div>
+              <div className="modal-body">
+                <p>This is a sample question for the selected image.</p>
+                <form>
+                  {["Option 1", "Option 2", "Option 3", "Option 4"].map((option, idx) => (
+                    <div className="form-check" key={idx}>
+                      <input
+                        className="form-check-input"
+                        type="radio"
+                        name="answerOptions"
+                        id={`option${idx + 1}`}
+                        value={option}
+                      />
+                      <label className="form-check-label" htmlFor={`option${idx + 1}`}>
+                        {option}
+                      </label>
+                    </div>
+                  ))}
+                </form>
+              </div>
+              <div className="modal-footer">
+                <button 
+                  className='btn btn-primary' 
+                  onClick={() => alert("Answer Submitted!")}>
+                  Submit Answer
+                </button>
+              </div>
+            </div>
+          </div>
+        </div>
+      )}
+    </section>
   );
 };
 
-export default Homepage;
+export default Page;
