@@ -312,7 +312,7 @@ const Page = () => {
         <h1 className='text-white' style={{textShadow:'2px 2px #f7d94f'}}>Special Quiz Problem</h1>
         <div className="modal-content quiz-mod-size" style={{ border: '4px solid rgb(153 219 142', boxShadow: '35px 40px rgb(68 58 65)' }}>
           <div className="modal-header justify-content-between" style={{ backgroundColor: 'rgb(61 94 181)', color: 'white' }}>
-            <h5 className="modal-title"><i className="fa fa-question-circle ml-2"></i> Question ({currentQuestionIndex + 1})</h5>
+            <h5 className="modal-title"><i className="fa fa-question-circle ml-2"></i>  {currentQuestionIndex + 1}/10</h5>
             {/* Uncomment this button to enable closing the modal */}
             {/* <button type="button" className="close" onClick={handleCloseModal} style={{ border: 'none', backgroundColor: '#e25151' }}>
               <span><i className="fa fa-times"></i></span> 
@@ -336,7 +336,7 @@ const Page = () => {
                 <p>All questions are completed! Are you ready to submit your answers?</p>
                 <div className="modal-footer">
                   <button className="btn btn-success" type="button" onClick={handleFinalSubmit} style={{ backgroundColor: '#e25151', color: 'white', border: 'none' }}>
-                    <i className="fa fa-paper-plane"></i> {/* Submit icon */}
+                    <i className="fa fa-paper-plane"></i> 
                     Submit Quiz
                   </button>
                 </div>
@@ -369,7 +369,7 @@ const Page = () => {
                   })}
                 </div>
                 <div className="modal-footer">
-                  {/* Uncomment this button to enable going to the previous question */}
+                
                   {/* <button
                     type="button"
                     className="btn btn-secondary"
@@ -380,7 +380,7 @@ const Page = () => {
                     Previous
                   </button> */}
                   <button className="btn btn-primary" type="submit" onClick={handleSubmitAnswer} style={{ backgroundColor: '#e25151', border: 'none' }} disabled={!selectedAnswer}>
-                    <i className="fa fa-arrow-right"></i> {/* Next icon */}
+                    <i className="fa fa-arrow-right"></i>
                     Next
                   </button>
                 </div>
