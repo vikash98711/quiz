@@ -17,13 +17,27 @@ const Homepage = () => {
   const handleShow = () => setShowModal(true);
 
   const handleEmailChange = (e) => {
-    setEmail(e.target.value);
-    setErrorMessage(''); 
+    const value = e.target.value;
+    setEmail(value);
+    
+    // Validate if the email ends with @gmail.com
+    if (value && !value.endsWith('@gmail.com')) {
+      setErrorMessage('Email must end with @gmail.com');
+    } else {
+      setErrorMessage(''); // Clear error message if valid
+    }
   };
 
   const handleSubmit = async (e) => {
     e.preventDefault();
     setIsLoading(true); 
+
+    // Check if the email is valid before proceeding
+    if (!email.endsWith('@gmail.com')) {
+      setErrorMessage('Email must end with @gmail.com');
+      setIsLoading(false);
+      return;
+    }
 
     try {
       const response = await fetch(`${url}/api/user`, {
@@ -61,11 +75,16 @@ const Homepage = () => {
   return (
     <>
       <div className='home-banner-santa p-5'>
+      <div className="stars-container">
+                {[...Array(100)].map((_, idx) => (
+                    <div key={idx} className="star" style={{ '--i': Math.random() * 100 }}></div>
+                ))}
+            </div>
         <div className='PlayButton-wrapper'>
           <div style={{ position: 'relative' }} className='mt-5'>
             <div>
               <div className="button play-game">
-                <img src="/new.png" className='zoom' onClick={handleShow}/>
+                <img src="/new.png" className='zoom' onClick={handleShow} />
               </div>
             </div>
           </div>
@@ -73,7 +92,7 @@ const Homepage = () => {
      
         <div className={`modal ${showModal ? 'show' : ''}`} style={{ display: showModal ? 'block' : 'none' }}>
           <div className="modal-dialog modal-dialog-centered p-3">
-            <div className="modal-content play-now-page-space" style={{ boxShadow: '35px 40px #9d2931' }} >
+            <div className="modal-content play-now-page-space" style={{ boxShadow: '35px 40px #9d2931' }}>
               <div className="modal-header justify-content-between">
                 <h5 className="modal-title santawcolor">Register yourself on Santas List</h5>
                 <i className="fa fa-times-circle" onClick={handleClose}></i>
@@ -114,4 +133,4 @@ const Homepage = () => {
   );
 };
 
-export default Homepage;
+export default Homepage; 
