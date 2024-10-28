@@ -8,7 +8,15 @@ import { url } from '@/utils/url';
 const Page = () => {
     const router = useRouter();
     const [result, setResult] = useState([]);
-    const storedEmail = localStorage.getItem("useremail");
+    const [storedEmail, setStoredEmail] = useState(null);
+
+    // Set storedEmail state once the component is mounted
+    useEffect(() => {
+        if (typeof window !== 'undefined') {
+            const email = localStorage.getItem("useremail");
+            setStoredEmail(email);
+        }
+    }, []);
 
     const findResult = async () => {
         if (!storedEmail) {
@@ -32,12 +40,16 @@ const Page = () => {
     };
 
     useEffect(() => {
-        findResult();
-    }, []);
+        if (storedEmail) {
+            findResult();
+        }
+    }, [storedEmail]);
 
     // Handle finish button click
     const handleFinish = () => {
-        localStorage.removeItem("useremail"); // Remove email from local storage
+        if (typeof window !== 'undefined') {
+            localStorage.removeItem("useremail"); // Remove email from local storage
+        }
         router.push('/'); // Redirect to home page
     };
 
