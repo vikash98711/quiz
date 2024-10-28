@@ -111,7 +111,7 @@ const Homepage = () => {
                       required
                     />
                     {errorMessage && (
-                      <div className="text-danger mt-3">
+                      <div className="text-white mt-3">
                         {errorMessage}
                       </div>
                     )}
