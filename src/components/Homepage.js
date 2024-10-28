@@ -75,7 +75,7 @@ const Homepage = () => {
           <div className="modal-dialog modal-dialog-centered p-3">
             <div className="modal-content play-now-page-space" style={{ boxShadow: '35px 40px #9d2931' }} >
               <div className="modal-header justify-content-between">
-                <h5 className="modal-title santawcolor">Register yourself on Santa's List</h5>
+                <h5 className="modal-title santawcolor">Register yourself on Santas List</h5>
                 <i className="fa fa-times-circle" onClick={handleClose}></i>
               </div>
               <div className="modal-body">
