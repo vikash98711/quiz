@@ -331,13 +331,13 @@ console.log(error);
   return (
     <section className='Quiz-sectionWrapper py-5 '>
       {showModal && (
-      <div className={`modal show santa-bg-theme fade-in`} style={{ display: 'block' }}>
+      <div className={`modal show santa-bg-theme fade-in mt-5`} style={{ display: 'block' }}>
       <div
-        className="modal-dialog modal-xl"
+        className="modal-dialog "
         onClick={(e) => e.stopPropagation()}
       >
         <h1 className='text-white' style={{textShadow:'2px 2px #f7d94f'}}>Special Quiz Problem</h1>
-        <div className="modal-content quiz-mod-size" style={{ border: '4px solid rgb(153 219 142', boxShadow: '35px 40px rgb(68 58 65)' }}>
+        <div className="modal-content quiz-mod-size" style={{ boxShadow: 'rgb(255 255 255) 12px 12px' }}>
           <div className="modal-header justify-content-between" style={{ backgroundColor: 'rgb(61 94 181)', color: 'white' }}>
             <h5 className="modal-title"> Question {currentQuestionIndex + 1} of {questionsData.length} </h5>
         

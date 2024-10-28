@@ -30,7 +30,7 @@
   position: relative;
   width: 100%;
   height: 100vh;
-  background-image: linear-gradient(rgba(0,0,0,0.6),rgba(0,0,0,0.6)),url('/christmassaleback.png');
+  background-image: linear-gradient(rgba(0,0,0,0.2),rgba(0,0,0,0.2)),url('/christmas.png');
   background-position: center;
   background-size: cover;
 }
@@ -41,7 +41,7 @@
 
 .PlayButton-wrapper{
   position: absolute;
-  top: 40%;
+  top: 62%;
   left: 50%;
   transform: translate(-50% ,-50%);
 }
@@ -50,7 +50,7 @@
   position: absolute;
   top: 20%;
   left: 59%;
-  transform: translate(5%, -56%);
+  transform: translate(38%, -74%);
 }
 .santa-cap  img {
 rotate: 33deg;
@@ -73,7 +73,7 @@ rotate: 33deg;
 
  
 .Quiz-sectionWrapper {
-  background-image: linear-gradient(rgba(0,0,0,0.9),rgba(0,0,0,0.9)),url('https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcSGwKAkyPh3K_lsdzi_0Di0ZUk44gHy3C8Cqw&s');
+  background-image: url('/picture4.png');
   width: 100%;
   height: 100vh;
   background-position: center;
@@ -103,7 +103,7 @@ rotate: 33deg;
   background-color: #ccc8ca !important;
 }
 
-.PlayButton-wrapper .button{
+/* .PlayButton-wrapper .button{
   position:relative;
   display:inline-block;
   margin:20px;
@@ -125,7 +125,7 @@ rotate: 33deg;
   filter: dropshadow(color=#000, offx=0px, offy=1px);
   box-shadow: inset 0 1px 0 #FFE5C4, 0 10px 0 #0f0f0f;
   border-radius: 5px;
-}
+} */
 @keyframes bounce {
   0%, 20%, 50%, 80%, 100% {
     transform: translateY(0);
@@ -199,7 +199,7 @@ rotate: 33deg;
 
 
 
-.PlayButton-wrapper .play-game a:active{
+/* .PlayButton-wrapper .play-game a:active{
   top:10px;
   background-color:var(--santa);
   
@@ -221,10 +221,10 @@ rotate: 33deg;
   -webkit-border-radius: 5px;
   -moz-border-radius: 5px;
   border-radius: 5px;
-}
+} */
 
 .quiz-mod-size {
-  padding: 5rem;
+  padding: 2rem;
 }
 .play-now-page-space {
   padding: 1.5rem;

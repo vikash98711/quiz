@@ -58,23 +58,24 @@ const Homepage = () => {
     <>
       <div className='home-banner-santa p-5'>
         <div className='PlayButton-wrapper'>
-        <h2 className='text-white fade-in' style={{textShadow:'2px 2px rgb(247 98 79)'}}>SANTAS</h2>
+        {/* <h2 className='text-white fade-in' style={{textShadow:'2px 2px rgb(247 98 79)'}}>SANTAS</h2>
   <h1 className='text-white fs-70 slide-up'style={{textShadow:'2px 2px rgb(247 98 79)'}}>SCRABBLE WORDS</h1>
-  <p className='text-white fade-in'style={{textShadow:'2px 2px rgb(247 98 79)'}}>Even The Santa Needs A Good Policy!</p>
+  <p className='text-white fade-in'style={{textShadow:'2px 2px rgb(247 98 79)'}}>Even The Santa Needs A Good Policy!</p> */}
           <div style={{ position: 'relative' }} className='mt-5'>
             <div>
               <div className="button play-game">
-                <a className='zoom' href="#" onClick={handleShow} style={{textShadow:'2px 2px rgb(247 98 79)'}}>Play Now <i className="fa fa-play"></i></a>
+              <img  className='zoom' onClick={handleShow} src="/new.png" style={{cursor:'pointer'}}/>
+                {/* <a className='zoom' href="#" onClick={handleShow} style={{textShadow:'2px 2px rgb(247 98 79)'}}>Play Now <i className="fa fa-play"></i></a> */}
               </div>
             </div>
-            <div className='santa-cap'>
+            {/* <div className='santa-cap'>
               <img
                 className='img-fluid bounce'
                 width='152px'
                 src='https://icons.veryicon.com/png/Holiday/Christmas%20Graphics/santa%20hat.png'
                 alt="Santa's Hat"
               />
-            </div>
+            </div> */}
           </div>
         </div>
 
