@@ -257,7 +257,7 @@ rotate: 33deg;
   top: -10%;
   width: 12px; /* Increased size */
   height: 12px;
-  background-color: white; /* Bold yellow */
+  background-color: #ffd700; /* Bold yellow */
   border-radius: 50%;
   box-shadow: 0 0 10px rgba(255, 223, 0, 0.8); /* More glow */
   animation: fall 6s linear infinite;
@@ -265,7 +265,7 @@ rotate: 33deg;
 }
 
 /* Varied sizes and colors for additional stars */
-.star:nth-child(2n) { width: 10px; height: 10px; background-color: white; animation-duration: 5s; }
+.star:nth-child(2n) { width: 10px; height: 10px; background-color: #ffd700; animation-duration: 5s; }
 .star:nth-child(3n) { width: 14px; height: 14px; background-color: white; animation-duration: 4.5s; }
 .star:nth-child(4n) { width: 16px; height: 16px; animation-duration: 7s; }
 

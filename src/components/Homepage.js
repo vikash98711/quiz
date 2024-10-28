@@ -92,18 +92,18 @@ const Homepage = () => {
      
         <div className={`modal ${showModal ? 'show' : ''}`} style={{ display: showModal ? 'block' : 'none' }}>
           <div className="modal-dialog modal-dialog-centered p-3">
-            <div className="modal-content play-now-page-space" style={{ boxShadow: '35px 40px #9d2931' }}>
+            <div className="modal-content play-now-page-space" style={{ boxShadow: '9px 9px white' ,backgroundColor:'#9d2931'}}>
               <div className="modal-header justify-content-between">
-                <h5 className="modal-title santawcolor resistered-title">Register yourself on Santas List</h5>
-                <i className="fa fa-times-circle" onClick={handleClose}></i>
+                <h5 className="modal-title santawcolor resistered-title text-white">Register yourself on Santas List</h5>
+                <i className="fa fa-times-circle text-white" onClick={handleClose}></i>
               </div>
               <div className="modal-body">
                 <form onSubmit={handleSubmit}>
                   <div className="form-group">
-                    <label htmlFor="formBasicEmail" clas>Enter Work Email Id</label>
+                    <label htmlFor="formBasicEmail" className='text-white'>Enter Work Email Id</label>
                     <input
                       type="email"
-                      className="form-control"
+                      className="form-control mt-3"
                       id="formBasicEmail"
                       placeholder="Enter your email"
                       value={email}
