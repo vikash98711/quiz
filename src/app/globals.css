@@ -200,33 +200,7 @@ rotate: 33deg;
 .play-now-page-space {
   padding: 1.5rem;
 }
-@media (min-width :200px) and (max-width:468px) {
-  .animated-button1 {
-    padding: 11px 22px;
-  }
 
-.home-banner-santa {
- 
-    position: relative;
-    width: 100%;
-    height: 100vh;
-    background-image: linear-gradient(rgba(0,0,0,0.2),rgba(0,0,0,0.2)),url('/Picture2.png');
-    background-position: center;
-    background-size: cover;
-  
-}
-.PlayButton-wrapper .button a{
-  font-size: 23px;
-  padding: 9px 20px;
-
-}
-.quiz-mod-size {
-  padding: 1rem !important;
-}
-.play-now-page-space {
-  padding: 1rem !important;
-}
-}
 
 /* Full-screen section styling */
 .resultWrapper {
@@ -301,3 +275,33 @@ rotate: 33deg;
 }
 
 
+@media (min-width :200px) and (max-width:468px) {
+  .animated-button1 {
+    padding: 11px 22px;
+  }
+
+.home-banner-santa {
+ 
+    position: relative;
+    width: 100%;
+    height: 100vh;
+    background-image: linear-gradient(rgba(0,0,0,0.2),rgba(0,0,0,0.2)),url('/Picture2.png');
+    background-position: center;
+    background-size: cover;
+  
+}
+.PlayButton-wrapper .button a{
+  font-size: 23px;
+  padding: 9px 20px;
+
+}
+.quiz-mod-size {
+  padding: 1rem !important;
+}
+.play-now-page-space {
+  padding: 1rem !important;
+}
+.congrats-message {
+  font-size: 33px;
+}
+}

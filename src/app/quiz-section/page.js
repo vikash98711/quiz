@@ -331,12 +331,12 @@ console.log(error);
   return (
     <section className='Quiz-sectionWrapper py-5 '>
         <div className="stars-container">
-                {[...Array(100)].map((_, idx) => (
+                {[...Array(50)].map((_, idx) => (
                     <div key={idx} className="star" style={{ '--i': Math.random() * 100 }}></div>
                 ))}
             </div>
       {showModal && (
-      <div className={`modal show santa-bg-theme centered fade-in`} style={{ display: 'block' }}>
+      <div className={`modal show santa-bg-theme mt-5 fade-in`} style={{ display: 'block' }}>
       <div
         className="modal-dialog "
         onClick={(e) => e.stopPropagation()}

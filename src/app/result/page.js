@@ -171,7 +171,7 @@ const Page = () => {
     return (
         <section className="resultWrapper">
             <div className="stars-container">
-                {[...Array(100)].map((_, idx) => (
+                {[...Array(50)].map((_, idx) => (
                     <div key={idx} className="star" style={{ '--i': Math.random() * 100 }}></div>
                 ))}
             </div>

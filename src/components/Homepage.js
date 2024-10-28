@@ -76,7 +76,7 @@ const Homepage = () => {
     <>
       <div className='home-banner-santa p-5'>
       <div className="stars-container">
-                {[...Array(100)].map((_, idx) => (
+                {[...Array(50)].map((_, idx) => (
                     <div key={idx} className="star" style={{ '--i': Math.random() * 100 }}></div>
                 ))}
             </div>
