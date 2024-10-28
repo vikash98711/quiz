@@ -42,9 +42,13 @@ const Homepage = () => {
         return;
       }
 
-      setEmail('');
+      // Store email in local storage
+      localStorage.setItem("useremail", email);
+
+      // Close the modal
       handleClose();
-      localStorage.setItem("useremail");
+
+      // Redirect to quiz section
       router.push('/quiz-section'); 
 
     } catch (error) {
@@ -58,33 +62,26 @@ const Homepage = () => {
     <>
       <div className='home-banner-santa p-5'>
         <div className='PlayButton-wrapper'>
-     
           <div style={{ position: 'relative' }} className='mt-5'>
             <div>
               <div className="button play-game">
-
                 <img src="/new.png" className='zoom' onClick={handleShow}/>
-              
               </div>
             </div>
-        
           </div>
         </div>
-
      
         <div className={`modal ${showModal ? 'show' : ''}`} style={{ display: showModal ? 'block' : 'none' }}>
           <div className="modal-dialog modal-dialog-centered p-3">
-            <div className="modal-content play-now-page-space " style={{boxShadow:'35px 40px #9d2931'}} >
-              <div className="modal-header justify-content-between" >
-                <h5 className="modal-title santawcolor">Register yourself on Santas List </h5>
-             
+            <div className="modal-content play-now-page-space" style={{ boxShadow: '35px 40px #9d2931' }} >
+              <div className="modal-header justify-content-between">
+                <h5 className="modal-title santawcolor">Register yourself on Santa's List</h5>
                 <i className="fa fa-times-circle" onClick={handleClose}></i>
-
               </div>
               <div className="modal-body">
                 <form onSubmit={handleSubmit}>
                   <div className="form-group">
-                    <label htmlFor="formBasicEmail">Enter Work Email Id </label>
+                    <label htmlFor="formBasicEmail">Enter Work Email Id</label>
                     <input
                       type="email"
                       className="form-control"
@@ -94,7 +91,6 @@ const Homepage = () => {
                       onChange={handleEmailChange}
                       required
                     />
-                   
                     {errorMessage && (
                       <div className="text-danger mt-3">
                         {errorMessage}
@@ -107,7 +103,6 @@ const Homepage = () => {
                     ) : (
                       'Start Game'
                     )}
-                    
                   </button>
                 </form>
               </div>
