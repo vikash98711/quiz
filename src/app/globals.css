@@ -275,11 +275,18 @@ rotate: 33deg;
 }
 
 
+.Question-wrapper {
+  font-size: 22px;
+  font-weight: 500;
+}
+
 @media (min-width :200px) and (max-width:468px) {
   .animated-button1 {
     padding: 11px 22px;
   }
-
+.resistered-title{
+  font-size: 16px;
+}
 .home-banner-santa {
  
     position: relative;
@@ -290,6 +297,7 @@ rotate: 33deg;
     background-size: cover;
   
 }
+
 .PlayButton-wrapper .button a{
   font-size: 23px;
   padding: 9px 20px;

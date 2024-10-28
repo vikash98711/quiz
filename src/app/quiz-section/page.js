@@ -372,7 +372,7 @@ console.log(error);
               </div>
             ) : (
               <div>
-                <p>{currentQuestion?.question}</p>
+                <p className='Question-wrapper'>{currentQuestion?.question}</p>
                 <div className="row justify-content-between">
                   {currentQuestion?.options.map((option, idx) => {
                     const isSelected = selectedAnswer === option;
