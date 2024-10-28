@@ -331,13 +331,13 @@ console.log(error);
   return (
     <section className='Quiz-sectionWrapper py-5 '>
       {showModal && (
-      <div className={`modal show santa-bg-theme fade-in mt-5`} style={{ display: 'block' }}>
+      <div className={`modal show santa-bg-theme fade-in`} style={{ display: 'block' }}>
       <div
         className="modal-dialog "
         onClick={(e) => e.stopPropagation()}
       >
         <h1 className='text-white' style={{textShadow:'2px 2px #f7d94f'}}>Special Quiz Problem</h1>
-        <div className="modal-content quiz-mod-size" style={{ boxShadow: 'rgb(255 255 255) 12px 12px' }}>
+        <div className="modal-content quiz-mod-size" style={{ border: '4px solid rgb(153 219 142', boxShadow: 'rgb(255 255 255) 12px 12px' }}>
           <div className="modal-header justify-content-between" style={{ backgroundColor: 'rgb(61 94 181)', color: 'white' }}>
             <h5 className="modal-title"> Question {currentQuestionIndex + 1} of {questionsData.length} </h5>
         
@@ -384,8 +384,8 @@ console.log(error);
                             }
                           }}
                         >
-                          {isCorrect && isSelected && <i className="fa fa-check-circle" style={{ marginRight: '5px', color: 'green' }}></i>} {/* Correct answer icon */}
-                          {isWrong && isSelected && <i className="fa fa-times-circle" style={{ marginRight: '5px', color: 'red' }}></i>} {/* Wrong answer icon */}
+                          {isCorrect && isSelected && <i className="fa fa-check-circle" style={{ marginRight: '5px', color: 'green' }}></i>}
+                          {isWrong && isSelected && <i className="fa fa-times-circle" style={{ marginRight: '5px', color: 'red' }}></i>} 
                           {option}
                         </button>
                       </div>
