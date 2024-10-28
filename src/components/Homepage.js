@@ -76,10 +76,13 @@ const Homepage = () => {
     <>
       <div className='home-banner-santa p-5'>
       <div className="stars-container">
-                {[...Array(50)].map((_, idx) => (
-                    <div key={idx} className="star" style={{ '--i': Math.random() * 100 }}></div>
-                ))}
-            </div>
+    {[...Array(50)].map((_, idx) => {
+        // Randomly select a shape class
+        const shapeClass = Math.random() < 0.33 ? 'star' : Math.random() < 0.5 ? 'diamond' : 'heart';
+        return <div key={idx} className={shapeClass} style={{ '--i': Math.random() * 100 }}></div>;
+    })}
+</div>
+
         <div className='PlayButton-wrapper'>
           <div style={{ position: 'relative' }} className='mt-5'>
             <div>

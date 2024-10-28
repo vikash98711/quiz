@@ -170,11 +170,15 @@ const Page = () => {
 
     return (
         <section className="resultWrapper">
-            <div className="stars-container">
-                {[...Array(50)].map((_, idx) => (
-                    <div key={idx} className="star" style={{ '--i': Math.random() * 100 }}></div>
-                ))}
-            </div>
+   <div className="stars-container">
+    {[...Array(50)].map((_, idx) => {
+        // Randomly select a shape class
+        const shapeClass = Math.random() < 0.33 ? 'star' : Math.random() < 0.5 ? 'diamond' : 'heart';
+        return <div key={idx} className={shapeClass} style={{ '--i': Math.random() * 100 }}></div>;
+    })}
+</div>
+
+
             <div className="content-center">
                 <h2 className="congrats-message">Congratulations!</h2>
                 <p className="score-display">
