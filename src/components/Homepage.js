@@ -44,6 +44,7 @@ const Homepage = () => {
 
       setEmail('');
       handleClose();
+      localStorage.setItem("useremail",email)
       router.push('/quiz-section'); // Navigate to the next page
 
     } catch (error) {

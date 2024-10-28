@@ -226,6 +226,9 @@
 import { useState, useEffect } from 'react';
 import 'bootstrap/dist/css/bootstrap.min.css';
 import 'font-awesome/css/font-awesome.min.css'; // Import Font Awesome CSS
+import { useRouter } from 'next/navigation';
+import { url } from '@/utils/url';
+
 
 const questionsData = [
   { id: '1', question: "Santa's Workshop Needs?", options: ["Protection", "Absolutely", "Security", "Legacy"], answer: "Protection" },
@@ -247,6 +250,7 @@ const Page = () => {
   const [result, setResult] = useState([]);
   const [quizCompleted, setQuizCompleted] = useState(false);
   const [questionsAnswered, setQuestionsAnswered] = useState(0);
+  const router = useRouter();
 
   useEffect(() => {
     setShowModal(true);
@@ -289,13 +293,36 @@ const Page = () => {
     }
   };
 
-  const handleFinalSubmit = () => {
+  const handleFinalSubmit = async () => {
+    const storeemail = localStorage.getItem("useremail");
+    console.log("storeemail",storeemail);
+    
     console.log("Quiz Results:", result);
-    setResult([]);
-    setCurrentQuestionIndex(0);
-    setQuizCompleted(false);
-    setShowModal(false);
-    setQuestionsAnswered(0);
+    if(!storeemail){
+      return  router.push('/'); 
+
+    }
+    try {
+      const response = await fetch(`${url}/api/user`, {
+        method: 'PUT',
+        headers: {
+          'Content-Type': 'application/json',
+        },
+        body: JSON.stringify({ email: storeemail, result }),
+      });
+      setResult([]);
+      setCurrentQuestionIndex(0);
+      setQuizCompleted(false);
+      setShowModal(false);
+      setQuestionsAnswered(0);
+      router.push('/result'); 
+    }
+    catch (error){
+console.log(error);
+
+    }
+
+
   };
 
   const currentQuestion = questionsData[currentQuestionIndex];
@@ -312,11 +339,8 @@ const Page = () => {
         <h1 className='text-white' style={{textShadow:'2px 2px #f7d94f'}}>Special Quiz Problem</h1>
         <div className="modal-content quiz-mod-size" style={{ border: '4px solid rgb(153 219 142', boxShadow: '35px 40px rgb(68 58 65)' }}>
           <div className="modal-header justify-content-between" style={{ backgroundColor: 'rgb(61 94 181)', color: 'white' }}>
-            <h5 className="modal-title"><i className="fa fa-question-circle ml-2"></i>  {currentQuestionIndex + 1}/10</h5>
-            {/* Uncomment this button to enable closing the modal */}
-            {/* <button type="button" className="close" onClick={handleCloseModal} style={{ border: 'none', backgroundColor: '#e25151' }}>
-              <span><i className="fa fa-times"></i></span> 
-            </button> */}
+            <h5 className="modal-title"> Question {currentQuestionIndex + 1} of {questionsData.length} </h5>
+        
           </div>
     
           <div className="progress mt-3" style={{ height: '20px' }}>
