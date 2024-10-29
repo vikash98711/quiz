@@ -231,7 +231,7 @@ import { url } from '@/utils/url';
 
 
 const questionsData = [
-  { id: '1', question: "Santa's Workshop Needs?", options: ["Absolutely", "Protection", "Guaranteed", "Protection", "Protection","e"], answer: "Protection" },
+  { id: '1', question: "Santa's Workshop Needs?", options: ["Absolutely", "Protection", "Guaranteed", "Protection", "Protection"], answer: "Protection" },
   { id: '2', question: "As reliable as Rudolph?", options: ["Absolutely", "Protection", "Security", "Prepared"], answer: "Absolutely" },
   { id: '3', question: "Gift beyond holidays?", options: ["Legacy", "Security", "Prepared", "Guaranteed"], answer: "Legacy" },
   { id: '4', question: "Best Christmas gift?", options: ["Amazon", "Nile", "Yangtze", "Mississippi"], answer: "Security" },
@@ -383,12 +383,7 @@ useEffect(() => {
               aria-valuemax="100"
             ></div>
           </div>
-          <div className='d-flex'>
-    <button className='btn bg-primary'></button>
-    <button className='btn bg-primary'></button>
-    <button className='btn bg-primary'></button>
-    <button className='btn bg-primary'></button>
-    </div>
+      
           <div className="modal-body" style={{ overflowY: 'auto', height: 'calc(100% - 120px)' }}>
             {quizCompleted ? (
               <div>
