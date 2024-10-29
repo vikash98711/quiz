@@ -231,16 +231,16 @@ import { url } from '@/utils/url';
 
 
 const questionsData = [
-  { id: '1', question: "Santa's Workshop Needs?", options: ["P", "o", "r", "t", "c","e", "t","i","o","n"], answer: "Protection" },
-  // { id: '2', question: "As reliable as Rudolph?", options: ["Absolutely", "Protection", "Security", "Prepared"], answer: "Absolutely" },
-  // { id: '3', question: "Gift beyond holidays?", options: ["Legacy", "Security", "Prepared", "Guaranteed"], answer: "Legacy" },
-  // { id: '4', question: "Best Christmas gift?", options: ["Amazon", "Nile", "Yangtze", "Mississippi"], answer: "Security" },
-  // { id: '5', question: "Sleigh financial challenges?", options: ["Prepared", "Guaranteed", "Twice", "Peace"], answer: "Prepared" },
-  // { id: '6', question: "Grinch-proof plan?", options: ["Assured", "Guaranteed", "Heritage", "Peace"], answer: "Guaranteed" },
-  // { id: '7', question: "Festive future?", options: ["Assured", "Legacy", "Prepared", "Security"], answer: "Assured" },
-  // { id: '8', question: "Checked your policy?", options: ["Twice", "Legacy", "Prepared", "Security"], answer: "Twice" },
-  // { id: '9', question: "Turn traditions into...?", options: ["Heritage", "Legacy", "Prepared", "Security"], answer: "Heritage" },
-  // { id: '10', question: "Harmonize benefits?", options: ["Peace", "Legacy", "Prepared", "Security"], answer: "Heritage" },
+  { id: '1', question: "Santa's Workshop Needs?", options: ["Absolutely", "Protection", "Guaranteed", "Protection", "Protection","e"], answer: "Protection" },
+  { id: '2', question: "As reliable as Rudolph?", options: ["Absolutely", "Protection", "Security", "Prepared"], answer: "Absolutely" },
+  { id: '3', question: "Gift beyond holidays?", options: ["Legacy", "Security", "Prepared", "Guaranteed"], answer: "Legacy" },
+  { id: '4', question: "Best Christmas gift?", options: ["Amazon", "Nile", "Yangtze", "Mississippi"], answer: "Security" },
+  { id: '5', question: "Sleigh financial challenges?", options: ["Prepared", "Guaranteed", "Twice", "Peace"], answer: "Prepared" },
+  { id: '6', question: "Grinch-proof plan?", options: ["Assured", "Guaranteed", "Heritage", "Peace"], answer: "Guaranteed" },
+  { id: '7', question: "Festive future?", options: ["Assured", "Legacy", "Prepared", "Security"], answer: "Assured" },
+  { id: '8', question: "Checked your policy?", options: ["Twice", "Legacy", "Prepared", "Security"], answer: "Twice" },
+  { id: '9', question: "Turn traditions into...?", options: ["Heritage", "Legacy", "Prepared", "Security"], answer: "Heritage" },
+  { id: '10', question: "Harmonize benefits?", options: ["Peace", "Legacy", "Prepared", "Security"], answer: "Heritage" },
 ];
 
 const Page = () => {
