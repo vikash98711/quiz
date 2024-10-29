@@ -223,7 +223,7 @@
 
 // export default Page;
 'use client';
-import { useState, useEffect } from 'react';
+import { useState, useEffect, useRef } from 'react';
 import 'bootstrap/dist/css/bootstrap.min.css';
 import 'font-awesome/css/font-awesome.min.css'; // Import Font Awesome CSS
 import { useRouter } from 'next/navigation';
@@ -231,16 +231,16 @@ import { url } from '@/utils/url';
 
 
 const questionsData = [
-  { id: '1', question: "Santa's Workshop Needs?", options: ["Protection", "Absolutely", "Security", "Legacy"], answer: "Protection" },
-  { id: '2', question: "As reliable as Rudolph?", options: ["Absolutely", "Protection", "Security", "Prepared"], answer: "Absolutely" },
-  { id: '3', question: "Gift beyond holidays?", options: ["Legacy", "Security", "Prepared", "Guaranteed"], answer: "Legacy" },
-  { id: '4', question: "Best Christmas gift?", options: ["Amazon", "Nile", "Yangtze", "Mississippi"], answer: "Security" },
-  { id: '5', question: "Sleigh financial challenges?", options: ["Prepared", "Guaranteed", "Twice", "Peace"], answer: "Prepared" },
-  { id: '6', question: "Grinch-proof plan?", options: ["Assured", "Guaranteed", "Heritage", "Peace"], answer: "Guaranteed" },
-  { id: '7', question: "Festive future?", options: ["Assured", "Legacy", "Prepared", "Security"], answer: "Assured" },
-  { id: '8', question: "Checked your policy?", options: ["Twice", "Legacy", "Prepared", "Security"], answer: "Twice" },
-  { id: '9', question: "Turn traditions into...?", options: ["Heritage", "Legacy", "Prepared", "Security"], answer: "Heritage" },
-  { id: '10', question: "Harmonize benefits?", options: ["Peace", "Legacy", "Prepared", "Security"], answer: "Heritage" },
+  { id: '1', question: "Santa's Workshop Needs?", options: ["P", "o", "r", "t", "c","e", "t","i","o","n"], answer: "Protection" },
+  // { id: '2', question: "As reliable as Rudolph?", options: ["Absolutely", "Protection", "Security", "Prepared"], answer: "Absolutely" },
+  // { id: '3', question: "Gift beyond holidays?", options: ["Legacy", "Security", "Prepared", "Guaranteed"], answer: "Legacy" },
+  // { id: '4', question: "Best Christmas gift?", options: ["Amazon", "Nile", "Yangtze", "Mississippi"], answer: "Security" },
+  // { id: '5', question: "Sleigh financial challenges?", options: ["Prepared", "Guaranteed", "Twice", "Peace"], answer: "Prepared" },
+  // { id: '6', question: "Grinch-proof plan?", options: ["Assured", "Guaranteed", "Heritage", "Peace"], answer: "Guaranteed" },
+  // { id: '7', question: "Festive future?", options: ["Assured", "Legacy", "Prepared", "Security"], answer: "Assured" },
+  // { id: '8', question: "Checked your policy?", options: ["Twice", "Legacy", "Prepared", "Security"], answer: "Twice" },
+  // { id: '9', question: "Turn traditions into...?", options: ["Heritage", "Legacy", "Prepared", "Security"], answer: "Heritage" },
+  // { id: '10', question: "Harmonize benefits?", options: ["Peace", "Legacy", "Prepared", "Security"], answer: "Heritage" },
 ];
 
 const Page = () => {
@@ -251,6 +251,7 @@ const Page = () => {
   const [quizCompleted, setQuizCompleted] = useState(false);
   const [questionsAnswered, setQuestionsAnswered] = useState(0);
   const router = useRouter();
+  const audioRef = useRef(null);
 
   useEffect(() => {
     setShowModal(true);
@@ -327,8 +328,32 @@ console.log(error);
 
   const currentQuestion = questionsData[currentQuestionIndex];
   const progressPercentage = ((questionsAnswered) / questionsData.length) * 100;
+ // Function to play the sound
+ const playSound = () => {
+  if (audioRef.current) {
+    audioRef.current.currentTime = 0; // Reset audio to start
+    audioRef.current.play().catch(error => {
+      console.error("Audio play failed:", error); // Log any errors
+    });
+  }
+};
 
+// Use useEffect to play sound on component mount
+useEffect(() => {
+  const playAudioOnLoad = async () => {
+    try {
+      await playSound();
+    } catch (error) {
+      console.error("Error playing audio on load:", error);
+    }
+  };
+
+  playAudioOnLoad();
+}, []); // Empty dependency array ensures this runs only once on mount
   return (
+    <>
+    <audio ref={audioRef} src="/sound2.mp3" preload="auto" />
+
     <section className='Quiz-sectionWrapper py-5 '>
         <div className="stars-container">
                 {[...Array(50)].map((_, idx) => (
@@ -358,7 +383,12 @@ console.log(error);
               aria-valuemax="100"
             ></div>
           </div>
-    
+          <div className='d-flex'>
+    <button className='btn bg-primary'></button>
+    <button className='btn bg-primary'></button>
+    <button className='btn bg-primary'></button>
+    <button className='btn bg-primary'></button>
+    </div>
           <div className="modal-body" style={{ overflowY: 'auto', height: 'calc(100% - 120px)' }}>
             {quizCompleted ? (
               <div>
@@ -380,7 +410,7 @@ console.log(error);
                     const isWrong = selectedAnswer && option !== currentQuestion.answer;
     
                     return (
-                      <div key={idx} className="col-lg-5 col-md-6 col-sm-12 mb-2">
+                      <div key={idx} className="col-lg-3 col-md-6 col-sm-12 mb-2">
                         <button
                           className={`btn ${isSelected ? (isCorrect ? 'lightgreen' : 'lightred') : 'btn-light'} w-100`}
                           onClick={() => {
@@ -422,6 +452,7 @@ console.log(error);
     
       )}
     </section>
+    </>
   );
 };
 
