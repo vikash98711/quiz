@@ -250,6 +250,7 @@ const Page = () => {
   const [result, setResult] = useState([]);
   const [quizCompleted, setQuizCompleted] = useState(false);
   const [questionsAnswered, setQuestionsAnswered] = useState(0);
+  const [loading, setLoading] = useState(false);
   const router = useRouter();
   const audioRef = useRef(null);
 
@@ -303,6 +304,7 @@ const Page = () => {
       return  router.push('/'); 
 
     }
+    setLoading(true);
     try {
       const response = await fetch(`${url}/api/user`, {
         method: 'PUT',
@@ -389,10 +391,21 @@ useEffect(() => {
               <div>
                 <p>All questions are completed! Are you ready to submit your answers?</p>
                 <div className="modal-footer">
-                  <button className="btn btn-success" type="button" onClick={handleFinalSubmit} style={{ backgroundColor: '#e25151', color: 'white', border: 'none' }}>
-                    <i className="fa fa-paper-plane"></i> 
-                    Submit Quiz
-                  </button>
+                <button
+      className="btn btn-success"
+      type="button"
+      onClick={handleFinalSubmit}
+      style={{ backgroundColor: '#e25151', color: 'white', border: 'none' }}
+      disabled={loading} // Disable button while loading
+    >
+      {loading ? (
+        <span className="spinner-border spinner-border-sm" role="status" aria-hidden="true"></span>
+      ) : (
+        <>
+          <i className="fa fa-paper-plane"></i> Submit Quiz
+        </>
+      )}
+    </button>
                 </div>
               </div>
             ) : (
@@ -405,7 +418,7 @@ useEffect(() => {
                     const isWrong = selectedAnswer && option !== currentQuestion.answer;
     
                     return (
-                      <div key={idx} className="col-lg-3 col-md-6 col-sm-12 mb-2">
+                      <div key={idx} className="col-lg-6 col-md-6 col-sm-12 mb-2">
                         <button
                           className={`btn ${isSelected ? (isCorrect ? 'lightgreen' : 'lightred') : 'btn-light'} w-100`}
                           onClick={() => {
